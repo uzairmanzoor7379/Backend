@@ -1,6 +1,5 @@
 const express = require('express')
 const cors = require('cors')
-const path = require('path')
 const app = express()
 const newModel = require('./model/usersdata.models');
 app.use(express.json())
@@ -43,12 +42,6 @@ app.patch('/api/userdata/:id',async(req,res)=>{
     message:'Updates successfully',
     updatedata
  })
-})
-app.use('*name',(req,res)=>{
-   res.send('invalid URL')
-})
-app.get('/',(req,res)=>{
-   res.sendFile(path.join(__dirname,'..','/public/index.html'))
 })
 
 module.exports = app

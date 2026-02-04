@@ -25,11 +25,13 @@ const App = () => {
    }
    function datahandleupdate(id){
      const  newemail= prompt('Enter new email')
-    
-        axios.patch(`https://backend-247a.onrender.com/api/userdata/${id}`,{email:newemail}).then(()=>{
+        if(newemail){
+             axios.patch(`https://backend-247a.onrender.com/api/userdata/${id}`,{email:newemail}).then(()=>{
           getdata()
           setemail('')
         }).catch(err=>console.log(err))
+        }
+       
    }
     useEffect(()=>{
       getdata()
@@ -46,7 +48,7 @@ const App = () => {
       }} className='input' type="text" placeholder='Enter Your Name' value={user} required />
       <input onChange={(e)=>{
         setemail(e.target.value)
-      }} className='input' type="text" placeholder='Enter Your Email / update' value={email} required />
+      }} className='input' type="text" placeholder='Enter Your Email' value={email} required />
       <button className='button'>Submit</button>
     </form>
     <div className='userdata'>
@@ -56,10 +58,10 @@ const App = () => {
                <h3>{elem.email}</h3>
                <div><button onClick={()=>{
                   datahandledelete(elem._id)
-               }} className='btn'>delete</button>
+               }} className='btn'>Delete</button>
                <button onClick={()=>{
                 datahandleupdate(elem._id)
-               }} className='btn bt1' >update</button></div>
+               }} className='btn bt1' >Update</button></div>
         </div>
       })}
     </div>

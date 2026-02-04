@@ -30,16 +30,6 @@ body {
     position: relative;
 }
 
-.form::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 40px;
-    width: 1px;
-    height: 100%;
-    background: #e8e8e8;
-}
-
 /* Input Fields */
 .input {
     padding: 12px 15px;

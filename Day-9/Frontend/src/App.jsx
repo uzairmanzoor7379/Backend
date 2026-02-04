@@ -24,9 +24,9 @@ const App = () => {
        }).catch(err=>console.log(err))
    }
    function datahandleupdate(id){
-    console.log(id)
-    console.log(email)
-        axios.patch(`https://backend-247a.onrender.com/api/userdata/${id}`,{email:email}).then(()=>{
+     const  newemail= prompt('Enter new email')
+    
+        axios.patch(`https://backend-247a.onrender.com/api/userdata/${id}`,{email:newemail}).then(()=>{
           getdata()
           setemail('')
         }).catch(err=>console.log(err))

@@ -5,12 +5,12 @@ const App = () => {
   const [email, setemail] = useState('')
   const [userdata, setuserdata] = useState([])
    function getdata(){
-     axios.get('http://localhost:3000/api/userdata').then((res)=>{
+     axios.get('https://backend-247a.onrender.com/api/userdata').then((res)=>{
       setuserdata(res.data.alldata)
     }).catch(err=>console.log(err))
    }
    function datahandlepost(){
-    axios.post('http://localhost:3000/api/userdata', {user,email}).then((res)=>{
+    axios.post('https://backend-247a.onrender.com/api/userdata', {user,email}).then((res)=>{
       console.log(res.data)
       getdata()
       setemail('')
@@ -19,14 +19,14 @@ const App = () => {
    }
    function datahandledelete(id){
        
-       axios.delete(`http://localhost:3000/api/userdata/${id}`).then(()=>{
+       axios.delete(`https://backend-247a.onrender.com/api/userdata/${id}`).then(()=>{
          getdata()
        }).catch(err=>console.log(err))
    }
    function datahandleupdate(id){
     console.log(id)
     console.log(email)
-        axios.patch(`http://localhost:3000/api/userdata/${id}`,{email:email}).then(()=>{
+        axios.patch(`https://backend-247a.onrender.com/api/userdata/${id}`,{email:email}).then(()=>{
           getdata()
           setemail('')
         }).catch(err=>console.log(err))

@@ -11,22 +11,23 @@ const Login = () => {
    const Navigate = useNavigate()
   if(loading){
     return(
-      <h1>
+      <main><h1>
         Loading.....
-      </h1>
+      </h1></main>
     )
   }
+   const handlesubmit =   async (e) => {
+         e.preventDefault()
+         await handleLogin(username  , password)
+          Navigate('/')
+      }
   return (
     <main>  
       <div className="form-container">
       <h1>Login</h1>
       <form onSubmit={(e)=>{
-          e.preventDefault()
-           handleLogin(username , password)
-           .then((res)=>{
-            console.log(res)
-            Navigate('/')
-           })
+          handlesubmit(e)
+           
 
 
            setusername('')

@@ -1,4 +1,8 @@
-.post-lable{
+main{
+  .form{
+    margin-left: 0px;
+    min-height: 100vh;
+        .post-lable{
            min-width: 400px;
             padding: 1rem;
             font-size: 1rem;
@@ -7,8 +11,10 @@
             background-color: rgb(197, 197, 197);
             color: rgb(31, 31, 31);
 }
+  }
 .icon-button{
     background-color: transparent;
     border: none;
     color: white;
+}
 }

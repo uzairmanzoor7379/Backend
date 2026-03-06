@@ -13,7 +13,7 @@ const CreatePost = () => {
         e.preventDefault()
         const file = PostImageFileRef.current.files[0]
        await handleCreatePost(file , Caption )
-       Navigate('/')
+       Navigate('/feed')
     }
    
     if(loading){
@@ -23,7 +23,7 @@ const CreatePost = () => {
     }
   return (
     <main>
-        <div className="form-container">
+        <div className="form-container form">
             <h1>CreatePost</h1>
             <form onSubmit={handleSubmit} >
                 <label className='post-lable' htmlFor="image">Select</label>

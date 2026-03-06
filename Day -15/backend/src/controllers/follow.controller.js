@@ -6,6 +6,13 @@ async function followController(req,res) {
       const followeeUsername = req.params.username
 
        const user = await userModel.findOne({username : followeeUsername})
+
+          if(!user){
+        return res.status(401).json({
+        message : "User not found",
+      })
+       }
+
        let status;
         if(user.isPrivate){
           status = "pending"
@@ -13,11 +20,7 @@ async function followController(req,res) {
         else{
           status = "accepted"
         }
-       if(!user){
-        return res.status(401).json({
-        message : "User not found",
-      })
-       }
+       
          if(followerUsername === followeeUsername){
             return res.status(400).json({
         message : "You can't follow yourself",
@@ -135,9 +138,35 @@ async function followRejectController(req,res) {
   })
  
 }
+async function getFollowDataController(req,res) {
+   const loggedInUser = req.user.username;
+  const followers = await followModel.find({
+    followee: loggedInUser,
+    status: "accepted"
+  });
+
+   const following = await followModel.find({
+    follower: loggedInUser,
+    status: "accepted"
+  });
+
+   const followingUsernames = following.map(e => e.followee);
+  const followerUsernames = followers.map(e => e.follower);
+
+  const others = await userModel.find({
+    username: {
+      $nin: [...followingUsernames, ...followerUsernames, loggedInUser]
+    }
+  });
+
+  res.json({ followers, following, others });
+
+
+}
 module.exports = {
     followController,
     unfollowController,
     followAcceptController,
-    followRejectController
+    followRejectController,
+    getFollowDataController
 }

@@ -6,7 +6,7 @@ const Nav = () => {
     const Navigate = useNavigate()
   return (
     <nav className='nav-bar'>
-        <p>Instagram</p>
+        <h2>Instagram</h2>
         <button onClick={()=>{
              Navigate('/create-post')
         }}

@@ -9,7 +9,6 @@ export function Feedposts() {
          setloading(true)
         try {
             const data =  await getAllPosts()
-            console.log(data.posts.reverse())
         setallposts(data.posts)
         } catch (error) {
             console.log(error)

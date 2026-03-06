@@ -1,49 +1,242 @@
-.feed{
-    padding-inline: 1rem;
-    padding-block: 1rem;
-    .posts{
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg:         #06060f;
+  --surface:    #0e0e1c;
+  --surface2:   #131324;
+  --border:     rgba(255,255,255,0.06);
+  --text:       #e8e8f0;
+  --muted:      #44445a;
+  --blue:       #5b9bff;
+  --red:        #ff5573;
+  --green:      #2ee8a0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.feed-main {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: 'Outfit', sans-serif;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .feed-container {
+    display: flex;
+    flex-direction: row;         
+    height: calc(100vh - 70px);
+    padding: 1.5rem 1.5rem;
+    gap: 3rem;
+
+
+  
+    .follow-record {
+      width: 265px;
+      flex-shrink: 0;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--surface2) transparent;
+
+      &::-webkit-scrollbar { width: 3px; }
+      &::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 10px; }
+
+      .follower, .following, .others {
+        background: var(--surface);
+        border-radius: 14px;
+        padding: 1rem;
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
-        .post{
-            max-width: 400px;
-            background-color: rgb(97, 100, 100);
-            padding: 0.6rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            .top{
-                display: flex;
-                gap: 0.5rem;
-                align-items: center;
-                    img{
-                        width: 2.1rem;
-                        aspect-ratio: 1/1;
-                        border-radius: 50%;
-                        object-fit: cover;  
-                    }
-                p{
-                    color: whitesmoke;
-                }
+        gap: 0.45rem;
+        flex-shrink: 0;
 
+        h2 {
+          font-size: 0.58rem;
+          font-weight: 700;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--muted);
+          padding-bottom: 0.4rem;
+          border-bottom: 1px solid var(--border);
+          margin-bottom: 0.2rem;
+        }
+
+        .followeruser, .followinguser, .othersuser {
+          display: flex;
+          align-items: center;
+          gap: 0.55rem;
+          padding: 0.35rem 0.4rem;
+          border-radius: 9px;
+          transition: background 0.15s;
+
+          &:hover { background: rgba(255,255,255,0.04); }
+
+          img {
+            width: 2.1rem;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            flex-shrink: 0;
+          }
+
+          p {
+            font-size: 0.88rem;
+            font-weight: 600;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          button {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 0.28rem 0.65rem;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            flex-shrink: 0;
+          }
+        }
+      }
+
+      .follower {
+        border-left: 3px solid var(--blue);
+        .followeruser button {
+          background: rgba(91,155,255,0.12);
+          color: var(--blue);
+          border-color: rgba(91,155,255,0.25);
+          &:hover { background: var(--blue); color: #fff; box-shadow: 0 0 14px rgba(91,155,255,0.3); }
+        }
+      }
+
+      .following {
+        border-left: 3px solid var(--red);
+        .followinguser button {
+          background: rgba(255,85,115,0.12);
+          color: var(--red);
+          border-color: rgba(255,85,115,0.25);
+          &:hover { background: var(--red); color: #fff; box-shadow: 0 0 14px rgba(255,85,115,0.3); }
+        }
+      }
+
+      .others {
+        border-left: 3px solid var(--green);
+        .othersuser button {
+          background: rgba(46,232,160,0.12);
+          color: var(--green);
+          border-color: rgba(46,232,160,0.25);
+          &:hover { background: var(--green); color: #06060f; box-shadow: 0 0 14px rgba(46,232,160,0.3); }
+        }
+      }
+    }
+
+   
+    .feed {
+      flex: 1;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: var(--surface2) transparent;
+
+      &::-webkit-scrollbar { width: 3px; }
+      &::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 10px; }
+
+      .posts {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        gap: 1rem;
+        padding-bottom: 1rem;
+
+        .post {
+          width: 310px;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 16px;
+          padding: 1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.8rem;
+          transition: border-color 0.2s, transform 0.2s;
+
+          &:hover {
+            border-color: rgba(255,255,255,0.11);
+            transform: translateY(-2px);
+          }
+
+          .top {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+
+            img {
+              width: 2.2rem;
+              aspect-ratio: 1/1;
+              border-radius: 50%;
+              object-fit: cover;
+              border: 2px solid var(--border);
+              flex-shrink: 0;
             }
-         img{
+
+            p {
+              font-weight: 600;
+              font-size: 0.95rem;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+
+          > img {
             width: 100%;
             aspect-ratio: 1/1;
             object-fit: cover;
-         }
-         .icon{
+            border-radius: 10px;
+          }
+
+          .icon {
             display: flex;
             justify-content: space-between;
-            .left{
-                display: flex;
-                gap: 0.3rem;
-                .red{
-                    color: red;
-                }
-            }
-         }
+            align-items: center;
 
+            .left {
+              display: flex;
+              gap: 0.8rem;
+              align-items: center;
+
+              * {
+                color: var(--muted);
+                font-size: 1.15rem;
+                cursor: pointer;
+                transition: color 0.15s, transform 0.15s;
+                &:hover { color: var(--text); transform: scale(1.12); }
+              }
+              .red { color: var(--red); }
+            }
+
+            * {
+              color: var(--muted);
+              cursor: pointer;
+              transition: color 0.15s;
+              &:hover { color: var(--text); }
+            }
+          }
         }
+      }
     }
+  }
 }

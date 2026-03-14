@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL: "https://backend-c0ap.onrender.com",
+    baseURL: "https://backend-gac6.onrender.com",
     withCredentials : true
 })
 

@@ -11,7 +11,7 @@ app.use(express.json())
 app.use(cookie())
 app.use(cors({
     credentials: true,
-    origin: ['http://localhost:5173', 'https://backend-c0ap.onrender.com']
+    origin: ['http://localhost:5173', 'https://backend-gac6.onrender.com']
 }))
 
 // API Routes pehle
